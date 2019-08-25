@@ -5,21 +5,70 @@
 </head>
 <body>
     <script>
-        
-function computerPlay(){
-let hand;
-let rand = Math.floor(Math.random()*3);
-if (rand == 1){
-hand = "rock";
+function game(){
+    let playerScore = 0;
+    let computerScore = 0;  
+    const games = 5;
+    for(let i = 0; i <games; i++){
+        let round = playRound(playerSelection, computerSelection  );
+        let playerSelection = prompt("Rock, Paper, or Scissors?").toUpperCase();
+        let computerSelection = computerPlay();
+        if(round ==='win'){
+            playerScore++;
+            console.log('you win')
+        } else if (round ==='lose'){
+            computerScore++;
+            console.log('you lose')
+        } else if (round === 'tie'){
+            console.log('tied')
+        }
+    }
+    if (playerScore > computerScore){
+        console.log('you are the big winner');
+    }else {
+        console.log('you are a big loser');
+    }
 }
-else if (rand == 2){
-    hand = "paper"
-}
-else {
-    hand = "scissors"
-}
+ 
+function playRound(playerSelection, computerSelection){
+let playerHand = playerSelection.toUpperCase();
+    if (playerHand = 'ROCK'){
+        if (computerSelection = 'ROCK'){
+            return 'tie';
+        } else if (computerSelection = 'PAPER'){
+            return 'lose';
+        } else {
+            return 'win';
+        }
+    }
+    if (playerHand = 'PAPER'){
+        if (computerSelection = 'PAPER'){
+            return 'tie';
+        } else if(computerSelection = 'SCISSORS'){
+            return 'lose';
+        } else {
+            return 'win';
+        }
+    }
+    if (playerHand = 'SCISSORS'){
+        if (computerSelection = 'SCISSORS'){
+            return 'tie';
+        } else if (computerSelection = 'ROCK'){
+            return 'lose';
+        } else {
+            return 'win';
+        }
+    }
 }
 
+
+function getRandomInt(max){
+    return Math.floor(Math.random()* Math.floor(max));
+}
+
+function computerPlay(){
+    return (["PAPER", "SCISSORS","ROCK"])[Math.random() * 3 | 0];
+}
 
 
 
