@@ -10,17 +10,17 @@ function game(){
     let computerScore = 0;  
     const games = 5;
     for(let i = 0; i <games; i++){
-        let round = playRound(playerSelection, computerSelection  );
-        let playerSelection = prompt("Rock, Paper, or Scissors?").toUpperCase();
         let computerSelection = computerPlay();
+        let playerSelection = prompt("Rock, Paper, or Scissors?").toUpperCase();
+        let round = playRound(playerSelection , computerSelection);
         if(round ==='win'){
             playerScore++;
-            console.log('you win')
+            console.log('you win');
         } else if (round ==='lose'){
             computerScore++;
-            console.log('you lose')
+            console.log('you lose');
         } else if (round === 'tie'){
-            console.log('tied')
+            console.log('tied');
         }
     }
     if (playerScore > computerScore){
@@ -31,8 +31,55 @@ function game(){
 }
  
 function playRound(playerSelection, computerSelection){
-let playerHand = playerSelection.toUpperCase();
-    if (playerHand = 'ROCK'){
+    switch (playerSelection ){
+        case 'ROCK':
+            switch (computerSelection){
+                case 'ROCK': return 'tie';
+                break;
+
+                case 'PAPER': return 'lose';
+                break;
+
+                case 'SCISSORS': return 'win';
+                break;
+
+                default: console.log('something went wrong');
+            }
+            break;
+
+            case 'PAPER':
+                switch (computerSelection){
+                    case 'ROCK': return 'win';
+                    break;
+
+                    case 'PAPER': return 'tie';
+                    break;
+
+                    case 'SCISSORS': return 'lose';
+                    break;
+
+                    default: console.log('something went wrong');
+                }
+                break;
+
+                case 'SCISSORS':
+                    switch(computerSelection){
+                        case 'ROCK': return 'lose';
+                        break;
+
+                        case 'PAPER': return 'win';
+                        break;
+
+                        case 'SCISSORS': return 'tie';
+                        break;
+
+                        default: console.log('something went wrong');
+                    }
+    }
+
+
+    /*if (playerSelection = 'ROCK'){
+        console.log(computerSelection);
         if (computerSelection = 'ROCK'){
             return 'tie';
         } else if (computerSelection = 'PAPER'){
@@ -41,7 +88,7 @@ let playerHand = playerSelection.toUpperCase();
             return 'win';
         }
     }
-    if (playerHand = 'PAPER'){
+    if (playerSelection = 'PAPER'){
         if (computerSelection = 'PAPER'){
             return 'tie';
         } else if(computerSelection = 'SCISSORS'){
@@ -50,7 +97,7 @@ let playerHand = playerSelection.toUpperCase();
             return 'win';
         }
     }
-    if (playerHand = 'SCISSORS'){
+    if (playerSelection = 'SCISSORS'){
         if (computerSelection = 'SCISSORS'){
             return 'tie';
         } else if (computerSelection = 'ROCK'){
@@ -58,21 +105,17 @@ let playerHand = playerSelection.toUpperCase();
         } else {
             return 'win';
         }
-    }
-}
-
-
-function getRandomInt(max){
-    return Math.floor(Math.random()* Math.floor(max));
+    }*/
 }
 
 function computerPlay(){
-    return (["PAPER", "SCISSORS","ROCK"])[Math.random() * 3 | 0];
+    const choices = ["PAPER", "SCISSORS","ROCK"];
+    const randomInt = Math.floor(Math.random() * 3);
+    return choices[randomInt];
 }
 
 
-
-
+game();
     </script>
 </body>
 </html>
